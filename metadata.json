@@ -1,0 +1,8 @@
+{
+  "name": "MyMoney",
+  "description": "Ứng dụng quản lý chi tiêu thông minh tích hợp Google Gemini để quét hóa đơn và tư vấn tài chính.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
