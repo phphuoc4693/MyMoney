@@ -7,7 +7,7 @@ import {
     INITIAL_ASSETS, 
     INITIAL_DEBTS, 
     INITIAL_SAVINGS_GOALS, 
-    INITIAL_RECURRING_BILLS,
+    INITIAL_RECURRING_BILLS, 
     INITIAL_CATEGORY_BUDGETS 
 } from './constants';
 import TransactionList from './components/TransactionList';
@@ -37,7 +37,7 @@ import FinancialHealthModal from './components/FinancialHealthModal';
 import CashflowForecast from './components/CashflowForecast';
 import LoginScreen from './components/LoginScreen';
 import JarsWidget from './components/JarsWidget';
-import BusinessManager from './components/BusinessManager'; // NEW
+import BusinessManager from './components/BusinessManager';
 
 import { 
   Plus, Wallet as WalletIcon, TrendingDown, TrendingUp, Menu, Calendar, 
@@ -72,11 +72,11 @@ const App: React.FC = () => {
 
   const [budget, setBudget] = useState<number>(() => {
       const saved = localStorage.getItem('budget');
-      return saved ? parseFloat(saved) : 15000000; // Conservative budget for efficiency
+      return saved ? parseFloat(saved) : 0; 
   });
 
   const [monthlyIncome, setMonthlyIncome] = useState<string>(() => {
-      return localStorage.getItem('planned_income') || '28000000'; // Updated income profile
+      return localStorage.getItem('planned_income') || '0'; 
   });
 
   const [categoryBudgets, setCategoryBudgets] = useState<Record<string, number>>(() => {
@@ -411,8 +411,8 @@ const App: React.FC = () => {
           setSavingsGoals(INITIAL_SAVINGS_GOALS);
           setRecurringBills(INITIAL_RECURRING_BILLS);
           setCategoryBudgets(INITIAL_CATEGORY_BUDGETS);
-          setBudget(15000000);
-          setMonthlyIncome('28000000');
+          setBudget(0);
+          setMonthlyIncome('0');
           setCustomCategories([]);
           
           showNotification("Đã reset về dữ liệu mặc định.");
@@ -657,11 +657,11 @@ const App: React.FC = () => {
                         <p className="text-xs text-gray-400 mt-1">Số dư trong kỳ</p>
                     </div>
                     <div className="grid grid-cols-2 gap-3 mt-6 relative z-10">
-                        <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm border border-white/5">
+                        <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm border border-white/10">
                             <div className="flex items-center gap-1 text-emerald-400 text-xs font-bold mb-1 uppercase"><TrendingUp size={12} /> Thu nhập</div>
                             <p className="font-semibold text-sm">{formatCurrency(totalIncome)}</p>
                         </div>
-                        <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm border border-white/5">
+                        <div className="bg-white/10 p-3 rounded-xl backdrop-blur-sm border border-white/10">
                             <div className="flex items-center gap-1 text-red-400 text-xs font-bold mb-1 uppercase"><TrendingDown size={12} /> Chi tiêu</div>
                             <p className="font-semibold text-sm">{formatCurrency(totalExpense)}</p>
                         </div>
